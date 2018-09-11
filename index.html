@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Track Circuit Generator</title>
+	<meta name="description" content="Score board for Crokinole table top game">
+	<meta name="author" content="Trevor Ross">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="scripts.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="title-bar">
+		<h3 class="title">Circuit Generator</h3>
+	</div>
+	<div class="content">
+		<div class="circuit-settings">
+			<div class="difficulty-slider">
+				<label>Difficulty:</label>
+				<input type="range" min="1" max="100" value="50">
+			</div>
+			<div class="duration-slider">
+				<label>Duration:</label>
+				<input type="range" min="1" max="100" value="50">
+			</div>
+			<button>Regenerate</button>
+		</div>
+		<div class="circuit-list">
+
+		</div>
+	</div>
+	<template id="circuit-item-template">
+		<div class="circuit-item">
+			<input type="checkbox"/>
+			<p class="item-title">Empty</p>
+			<span class="reorder-handle"></span>
+		</div>
+	</template>
+</body>
+</html>
