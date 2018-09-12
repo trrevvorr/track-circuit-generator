@@ -33,3 +33,11 @@ body {
     margin: 0;
 }
 
+.circuit-item {
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+}
+
+.item-title {
+	margin: 0;
+}
