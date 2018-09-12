@@ -1,0 +1,35 @@
+html {
+	font-size: 18px;
+}
+
+
+body {
+	font-family: system-ui, sans-serif;
+	display: grid;
+/* 	grid-template-rows: auto; */
+	grid-gap: 1rem;
+}
+
+.content {
+	display: grid;
+/* 	grid-template-rows: auto auto; */
+	grid-gap: 1rem;
+}
+
+.content .circuit-settings {
+	display: grid;
+	grid-gap: 1rem;
+	padding: 1rem;
+/* 	grid-template-rows: auto; */
+}
+
+.difficulty-slider, 
+.duration-slider {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+
+.title-bar .title {
+    margin: 0;
+}
+
