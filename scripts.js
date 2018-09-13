@@ -7,7 +7,7 @@ function generateCircuit() {
 	var totalDifficulty = 0;
 
 	while ((totalDuration < maxDuration) && (totalDifficulty < maxDifficulty)) {
-		var randomIndex = Math.floor(Math.random() * (numExercises + 1));
+		var randomIndex = Math.floor(Math.random() * (numExercises));
 		var randomExecise = EXERCISES[randomIndex];
 		totalDuration += randomExecise.duration;
 		totalDifficulty += randomExecise.difficulty;

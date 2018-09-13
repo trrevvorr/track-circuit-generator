@@ -19,11 +19,11 @@
 		<div class="circuit-settings">
 			<div class="difficulty-slider">
 				<label>Difficulty</label>
-				<input type="range" min="1" max="10" value="5">
+				<input type="range" min="1" max="20" value="5">
 			</div>
 			<div class="duration-slider">
 				<label>Duration</label>
-				<input type="range" min="1" max="10" value="5">
+				<input type="range" min="1" max="20" value="5">
 			</div>
 			<button class="regenerate-button" onclick="generateCircuit();">Regenerate</button>
 		</div>
@@ -34,7 +34,7 @@
 	<template id="circuit-item-template">
 		<div class="circuit-item">
 			<input type="checkbox"/>
-			<p class="item-title">Empty</p>
+			<label class="item-title">Empty</label>
 			<span class="reorder-handle">
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve">
 					<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
