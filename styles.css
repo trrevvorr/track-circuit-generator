@@ -49,6 +49,7 @@ body {
     height: 2rem;
     margin: 0 1rem;
     border-radius: 1rem;
+    font-size: inherit;
 /*     width: 10rem; */
 }
 
@@ -72,8 +73,16 @@ body {
 	border-radius: 1rem;
 }
 
+.circuit-item.completed {
+	background-color: #e6e6e6;
+}
+
 .item-title {
 	color: #1967d2;
+}
+
+.circuit-item.completed .item-title{
+	color: #6b6b6b;
 }
 
 .reorder-handle {
@@ -84,4 +93,8 @@ body {
 	height: 1rem;
 	width: 1rem;
 	fill: #1967d2;
+}
+
+.circuit-item.completed .reorder-handle svg{
+	fill: #6b6b6b;
 }

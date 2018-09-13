@@ -19,11 +19,11 @@
 		<div class="circuit-settings">
 			<div class="difficulty-slider">
 				<label>Difficulty</label>
-				<input type="range" min="1" max="20" value="5">
+				<input type="range" min="1" max="20" value="10">
 			</div>
 			<div class="duration-slider">
 				<label>Duration</label>
-				<input type="range" min="1" max="20" value="5">
+				<input type="range" min="1" max="20" value="10">
 			</div>
 			<button class="regenerate-button" onclick="generateCircuit();">Regenerate</button>
 		</div>
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	<template id="circuit-item-template">
-		<div class="circuit-item">
+		<div class="circuit-item" onclick="toggleCompletion(this, event);">
 			<input type="checkbox"/>
 			<label class="item-title">Empty</label>
 			<span class="reorder-handle">

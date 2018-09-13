@@ -1,14 +1,16 @@
-function generateCircuit() {
+function generateCircuit() {	
 	const maxDifficulty = getMaxDifficulty();
 	const maxDuration = getMaxDuration();
-	const numExercises = EXERCISES.length;
 	var chosenExercises = [];
 	var totalDuration = 0;
 	var totalDifficulty = 0;
+	var exercises = EXERCISES.slice();
+	shuffle(exercises);
 
-	while ((totalDuration < maxDuration) && (totalDifficulty < maxDifficulty)) {
-		var randomIndex = Math.floor(Math.random() * (numExercises));
-		var randomExecise = EXERCISES[randomIndex];
+	while ((totalDuration < maxDuration) && 
+		   (totalDifficulty < maxDifficulty) &&
+		   (exercises.length)) {
+		var randomExecise = exercises.pop();
 		totalDuration += randomExecise.duration;
 		totalDifficulty += randomExecise.difficulty;
 		chosenExercises.push(randomExecise);
@@ -40,6 +42,32 @@ function loadCircut(exercises) {
 	}
 }
 
-function setExerciseTemplateData(element, exercise) {
-	element.querySelector(".item-title").textContent = exercise.title;
+function setExerciseTemplateData(node, exercise) {
+	node.querySelector(".item-title").textContent = exercise.title;
+}
+
+function toggleCompletion(exerciseNode, event) {
+	var checkbox = exerciseNode.querySelector("input[type='checkbox']");
+	// toggle check if neccessary
+	if (event.target !== checkbox) {
+		checkbox.checked = !checkbox.checked;
+	}
+
+	// apply or remove checked class 
+	if (checkbox.checked) {
+		exerciseNode.classList.add("completed");
+	} else {
+		exerciseNode.classList.remove("completed");
+	}
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
