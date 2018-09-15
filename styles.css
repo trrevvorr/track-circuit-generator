@@ -46,21 +46,47 @@ body {
 .difficulty-slider,
 .exercise-count-slider {
 	display: grid;
-	grid-template-columns: 3fr 1fr 6fr;
+	grid-template-columns: 4fr 1fr 6fr;
+	grid-gap: 0.5rem
 }
 
-.regenerate-button {
-	background-color: white;
-	border: none;
+.difficulty-slider label[for="difficulty-slider-input"],
+.exercise-count-slider label[for="exercise-count-slider-input"] {
+	text-align: right;
+}
+
+.circuit-settings input[type="number"] {
+	height: 1rem;
+	width: 2rem;
+}
+
+.generate-button {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 	height: 2rem;
-	margin: 0 1rem;
+	margin: auto;
 	border-radius: 1rem;
 	font-size: inherit;
+	padding: 0 0.5rem;
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	background-color: #1967d2;
+	border: none;
+	color: white;
 }
 
-.regenerate-button:hover {
+.generate-button:hover {
 	box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.generate-button i.material-icons {
+	color: white;
+	vertical-align: text-bottom;
+	font-size: 1.2rem;
+}
+
+.generate-button.clicked .text{
+	display: none;
 }
 
 /***** CIRCUIT LIST *****/
@@ -96,15 +122,11 @@ body {
 }
 
 .circuit-item .reorder-handle {
+	font-size: 1rem;
+	color: #1967d2;
 	margin: auto;
 }
 
-.circuit-item .reorder-handle svg {
-	height: 1rem;
-	width: 1rem;
-	fill: #1967d2;
-}
-
-.circuit-item.completed .reorder-handle svg{
-	fill: #6b6b6b;
+.circuit-item.completed .reorder-handle {
+	color: #6b6b6b;
 }

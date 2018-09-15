@@ -1,6 +1,6 @@
 //////// CIRCUIT GENERATION ////////
 
-function generateCircuit() {
+function generateCircuit(button) {
 	const maxDifficulty = getMaxDifficulty();
 	const exerciseLimit = getExerciseCount();
 	var chosenExercises = [];
@@ -20,6 +20,7 @@ function generateCircuit() {
 	}
 
 	setCircut(chosenExercises);
+	button.classList.add("clicked");
 }
 
 function validateExercise(exercise, totalDifficulty, maxDifficulty) {
