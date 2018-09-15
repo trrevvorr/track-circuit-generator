@@ -71,20 +71,20 @@ body {
   	filter: grayscale(0);
 }
 
-.exercise-count-slider {
+.exercise-count-input {
 	display: grid;
-	grid-template-columns: 4fr 1fr 6fr;
-	grid-gap: 0.5rem
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
 }
 
-.difficulty-slider label[for="difficulty-slider-input"],
-.exercise-count-slider label[for="exercise-count-slider-input"] {
+.exercise-count-input label {
 	text-align: right;
+	font-size: 1.5rem;
 }
 
-.circuit-settings input[type="number"] {
-	height: 1rem;
-	width: 2rem;
+.exercise-count-input input {
+	font-size: 1.5rem;
+	width: 3rem;;
 }
 
 .generate-button {

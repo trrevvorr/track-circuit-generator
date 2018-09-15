@@ -34,7 +34,7 @@ function validateExercise(exercise, totalDifficulty, maxDifficulty) {
 }
 
 function getExerciseCount() {
-	var exerciseCount = document.querySelector(".exercise-count-slider input").value;
+	var exerciseCount = document.querySelector(".exercise-count-input input").value;
 	return parseInt(exerciseCount) || 0;
 }
 
@@ -61,20 +61,6 @@ function setExerciseTemplateData(node, exercise) {
 }
 
 //////// EVENT HANDLERS ////////
-
-function rangeChanged(node) {
-	var rangeRow = node.parentElement;
-	var newValue = node.value;
-	var nodeType = node.type;
-
-	if (nodeType === "number") {
-		var otherRange = rangeRow.querySelector("input[type='range']");
-	} else {
-		var otherRange = rangeRow.querySelector("input[type='number']");
-	}
-
-	otherRange.value = node.value;
-}
 
 function toggleCompletion(exerciseNode, event) {
 	var checkbox = exerciseNode.querySelector("input[type='checkbox']");
