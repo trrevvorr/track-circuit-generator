@@ -19,10 +19,13 @@
 	</div>
 	<div class="content">
 		<div class="circuit-settings">
-			<div class="difficulty-slider">
-				<label for="difficulty-slider-input">Max Difficulty</label>
-				<input id="difficulty-slider-input" type="number" onchange="rangeChanged(this);" min="1" max="20" value=10 placeholder="10"/>
-				<input type="range" onchange="rangeChanged(this);" min="1" max="20" value="10">
+			<div class="difficulty-radio">
+				<label>Difficulty</label>
+				<div class=radio-group>
+					<button onclick="setDifficulty(this);" value="10" class="easy selected">😃</button>
+					<button onclick="setDifficulty(this);" value="18" class="medium">😓</button>
+					<button onclick="setDifficulty(this);" value="25" class="hard">🤬</button>
+				</div>
 			</div>
 			<div class="exercise-count-slider">
 				<label for="exercise-count-slider-input">Max Exercises</label>

@@ -1,7 +1,7 @@
 //////// CIRCUIT GENERATION ////////
 
 function generateCircuit(button) {
-	const maxDifficulty = getMaxDifficulty();
+	const maxDifficulty = getDifficulty();
 	const exerciseLimit = getExerciseCount();
 	var chosenExercises = [];
 	var totalExercises = 0;
@@ -38,8 +38,8 @@ function getExerciseCount() {
 	return parseInt(exerciseCount) || 0;
 }
 
-function getMaxDifficulty() {
-	var difficulty = document.querySelector(".difficulty-slider input").value;
+function getDifficulty() {
+	var difficulty = document.querySelector(".difficulty-radio .radio-group button.selected").value;
 	return parseInt(difficulty) || 0;
 }
 
@@ -89,6 +89,18 @@ function toggleCompletion(exerciseNode, event) {
 	} else {
 		exerciseNode.classList.remove("completed");
 	}
+}
+
+function setDifficulty(button) {
+	var radioGroup = button.parentElement;
+	var radioButtons = radioGroup.querySelectorAll("button");
+
+	for (var i = 0; i < radioButtons.length; i++) {
+		var radioButton = radioButtons[i];
+		radioButton.classList.remove("selected");
+	}
+
+	button.classList.add("selected");
 }
 
 //////// HELPER FUNCTIONS ////////
