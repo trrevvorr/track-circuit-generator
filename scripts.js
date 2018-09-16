@@ -1,36 +1,40 @@
+//////// GLOBALS ////////
+// see globals defined in exercises.js
+
 //////// CIRCUIT GENERATION ////////
-
 function generateCircuit(button) {
-	const maxDifficulty = getDifficulty();
-	const exerciseLimit = getExerciseCount();
 	var chosenExercises = [];
-	var totalExercises = 0;
-	var totalDifficulty = 0;
-	var possibleExercises = EXERCISES.slice();
-	shuffle(possibleExercises);
+	// settings
+	const difficultyWeights = getDifficultyWeights();
+	const exerciseLimit = getExerciseCount();
+	// available exercises
+	var availableExercises = {};
+	availableExercises.easy = shuffle(EXERCISES.easy.slice());
+	availableExercises.medium = shuffle(EXERCISES.medium.slice());
+	availableExercises.hard = shuffle(EXERCISES.hard.slice());
 
-	while (possibleExercises.length &&
-			(chosenExercises.length < exerciseLimit) &&
-			(totalDifficulty < maxDifficulty)) {
-		var randomExecise = possibleExercises.pop();
-		if (validateExercise(randomExecise, totalDifficulty, maxDifficulty)) {
-			totalDifficulty += randomExecise.difficulty;
-			chosenExercises.push(randomExecise);
+	// choose exercises
+	var DIFFS = [];
+	while ((chosenExercises.length < exerciseLimit) && exerciseAvailable(availableExercises)) {
+		var difficulty = chooseDifficulty(difficultyWeights)
+		var exercise = availableExercises[difficulty].pop();
+		if (validateExercise(exercise, difficulty)) {
+			chosenExercises.push(exercise);
+			DIFFS.push(difficulty);
 		}
 	}
-
-	setCircut(chosenExercises);
+	// display circuit data on page
+	displayCircuit(chosenExercises);
 	button.classList.add("clicked");
+
+	DIFFS.sort();
+	console.log(`easy: ${(DIFFS.lastIndexOf(EASY) - DIFFS.indexOf(EASY) + 1) / DIFFS.length * 100}%`)
+	console.log(`medium: ${(DIFFS.lastIndexOf(MED) - DIFFS.indexOf(MED) + 1) / DIFFS.length * 100}%`)
+	console.log(`hard: ${(DIFFS.lastIndexOf(HARD) - DIFFS.indexOf(HARD) + 1) / DIFFS.length * 100}%`)
 }
 
-function validateExercise(exercise, totalDifficulty, maxDifficulty) {
-	var addedDifficulty = parseInt(exercise.difficulty);
-	if (isNaN(addedDifficulty)) {
-		console.log(`ERROR: Exercise "${exercise.title}" has difficulty ${exercise.difficulty}`);
-		addedDifficulty = 0;
-	}
-
-	return (totalDifficulty + addedDifficulty) <= maxDifficulty;
+function validateExercise(exercise, difficulty) {
+	return true; // to be extended in future
 }
 
 function getExerciseCount() {
@@ -38,12 +42,41 @@ function getExerciseCount() {
 	return parseInt(exerciseCount) || 0;
 }
 
-function getDifficulty() {
-	var difficulty = document.querySelector(".difficulty-radio .radio-group button.selected").value;
-	return parseInt(difficulty) || 0;
+function getDifficultyWeights() {
+	var difficultyWeights = [];
+	const difficulty = document.querySelector(".difficulty-radio .radio-group button.selected").value;
+
+	if (difficulty === EASY) {
+		// EASY: 50%, MED: 33%, HARD: 17%
+		difficultyWeights = [EASY, EASY, EASY, MED, MED, HARD];
+	} else if (difficulty === MED) {
+		// EASY: 33%, MED: 33%, HARD: 33%
+		difficultyWeights = [EASY, MED, HARD];
+	} else if (difficulty === HARD) {
+		// EASY: 17%, MED: 33%, HARD: 50%
+		difficultyWeights = [EASY, MED, MED, HARD, HARD, HARD];
+	} else {
+		console.log(`ERROR: difficulty setting invalid: "${difficulty}"`);
+		difficultyWeights = [];
+	}
+
+	return difficultyWeights;
 }
 
-function setCircut(exercises) {
+function exerciseAvailable(exercises, difficulty) {
+	if (difficulty) {
+		return exercises[difficulty].length > 0;
+	} else {
+		return (exercises[EASY].length + exercises[MED].length + exercises[HARD].length) > 0;
+	}
+}
+
+function chooseDifficulty(difficultyWeights) {
+	var randIndex = Math.floor(Math.random() * (difficultyWeights.length));
+	return difficultyWeights[randIndex];
+}
+
+function displayCircuit(exercises) {
 	const templateExercise = document.querySelector("#circuit-item-template");
 	const exerciseListNode = document.querySelector(".circuit-list");
 	exerciseListNode.innerHTML = "";
@@ -57,7 +90,7 @@ function setCircut(exercises) {
 }
 
 function setExerciseTemplateData(node, exercise) {
-	node.querySelector(".item-title").textContent = exercise.title;
+	node.querySelector(".item-title").textContent = exercise;
 }
 
 //////// EVENT HANDLERS ////////

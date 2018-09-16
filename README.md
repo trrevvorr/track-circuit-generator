@@ -10,3 +10,4 @@ Generate unique track circuits for for a new workout each time
     - [ ] Cannot put 3's back to back or 1's back to back
     - [ ] A difficulty 3 exercise must be the first and last exercise
 - [ ] custom checkbox icon
+- [ ] add whitespace to bottom of list, allowing user to scroll past the generate button
