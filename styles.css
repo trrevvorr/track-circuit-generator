@@ -27,6 +27,7 @@ body {
 	position: sticky;
 	top: 0;
 	background-color: white;
+	z-index: 100;
 }
 
 .title-bar .title {
@@ -91,9 +92,16 @@ body {
 	text-align: center;
 }
 
+/***** GENERATE BUTTTON *****/
+
+.generate-button,
+.button-spacer {
+	height: 2rem;
+	min-width: 1px;
+}
+
 .generate-button {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
-	height: 2rem;
 	margin: auto;
 	border-radius: 1rem;
 	font-size: inherit;
@@ -114,10 +122,6 @@ body {
 	color: white;
 	vertical-align: text-bottom;
 	font-size: 1.2rem;
-}
-
-.generate-button.clicked .text{
-	display: none;
 }
 
 /***** CIRCUIT LIST *****/

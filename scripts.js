@@ -14,23 +14,24 @@ function generateCircuit(button) {
 	availableExercises.hard = shuffle(EXERCISES.hard.slice());
 
 	// choose exercises
-	var DIFFS = [];
+	var difficulties = [];
 	while ((chosenExercises.length < exerciseLimit) && exerciseAvailable(availableExercises)) {
 		var difficulty = chooseDifficulty(difficultyWeights)
 		var exercise = availableExercises[difficulty].pop();
 		if (validateExercise(exercise, difficulty)) {
 			chosenExercises.push(exercise);
-			DIFFS.push(difficulty);
+			difficulties.push(difficulty);
 		}
 	}
 	// display circuit data on page
 	displayCircuit(chosenExercises);
-	button.classList.add("clicked");
 
-	DIFFS.sort();
-	console.log(`easy: ${(DIFFS.lastIndexOf(EASY) - DIFFS.indexOf(EASY) + 1) / DIFFS.length * 100}%`)
-	console.log(`medium: ${(DIFFS.lastIndexOf(MED) - DIFFS.indexOf(MED) + 1) / DIFFS.length * 100}%`)
-	console.log(`hard: ${(DIFFS.lastIndexOf(HARD) - DIFFS.indexOf(HARD) + 1) / DIFFS.length * 100}%`)
+	difficulties.sort();
+	var logData = {};
+	logData.easy = (difficulties.lastIndexOf(EASY) - difficulties.indexOf(EASY) + 1) / difficulties.length * 100 + "%";
+	logData.medium = (difficulties.lastIndexOf(MED) - difficulties.indexOf(MED) + 1) / difficulties.length * 100 + "%";
+	logData.hard = (difficulties.lastIndexOf(HARD) - difficulties.indexOf(HARD) + 1) / difficulties.length * 100 + "%";
+	console.table([logData]);
 }
 
 function validateExercise(exercise, difficulty) {
@@ -56,7 +57,7 @@ function getDifficultyWeights() {
 		// EASY: 17%, MED: 33%, HARD: 50%
 		difficultyWeights = [EASY, MED, MED, HARD, HARD, HARD];
 	} else {
-		console.log(`ERROR: difficulty setting invalid: "${difficulty}"`);
+		console.error(`ERROR: difficulty setting invalid: "${difficulty}"`);
 		difficultyWeights = [];
 	}
 
