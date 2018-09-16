@@ -34,7 +34,7 @@ function generateCircuit(button) {
 }
 
 function validateExercise(exercise, difficulty) {
-	return true; // to be extended in future
+	return !!exercise; // exercise must exist
 }
 
 function getExerciseCount() {
